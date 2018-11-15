@@ -1,0 +1,40 @@
+<div class="wrap-center">
+	<form class="form" [formGroup]="form" (ngSubmit)="OnSubmit()">
+
+		<img class="mb-4" src="../../assets/icon/dentsoft-logo.svg" alt="" width="64" height="64">
+		<h1 class="title">Welcome to DentSoft!</h1>
+		<h3 class="subtitle">Please sign in</h3>
+
+		<div *ngIf="result.type" class="alert {{result.type == 'error'? 'alert-danger':'alert-success'}}">
+			{{result.message}}
+		</div>
+
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input type="email" id="inputEmail" formControlName="email" class="form-control backg-dark" placeholder="Email address"
+		 required autofocus>
+
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" formControlName="password" class="form-control backg-dark" placeholder="Password"
+		 required>
+
+		<button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!form.valid">Sign in</button>
+
+		<br>
+
+		<a routerLink="/signup">
+			<div class="text-action">
+				<div class="text-action-left">
+					<strong>
+						<i class="fas fa-bell text-warning"></i> Don't have an account?
+					</strong>
+					<p class="mt-2">
+						Click here to create your new account.
+					</p>
+				</div>
+				<div class="text-action-right">
+					<i class="fas fa-chevron-right"></i>
+				</div>
+			</div>
+		</a>
+	</form>
+</div>

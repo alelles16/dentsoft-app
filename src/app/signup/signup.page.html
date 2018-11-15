@@ -1,0 +1,52 @@
+<div class="wrap-center">
+	<form class="form form-left" [formGroup]="form" (ngSubmit)="OnSubmit()">
+		<img class="mb-1" src="../../assets/icon/dentsoft-logo.svg" alt="" width="48" height="48">
+		<h1 class="title mb-4">Get started <br> with a free account</h1>
+
+		<div *ngIf="result.type" class="alert {{result.type == 'error'? 'alert-danger':'alert-success'}}">
+			{{result.message}}
+		</div>
+
+		<label for="name" class="sr-only">Name</label>
+		<input type="text" id="name" formControlName="name" class="form-control backg-dark" placeholder="Name" required
+		 autofocus>
+
+		<label for="lastname" class="sr-only">Last Name</label>
+		<input type="text" id="lastname" formControlName="lastname" class="form-control backg-dark" placeholder="Last Name"
+		 required>
+
+		<label for="mobile" class="sr-only">Mobile</label>
+		<input type="tel" id="mobile" formControlName="mobile" class="form-control backg-dark" placeholder="Mobile"
+		 required>
+
+		<label for="email" class="sr-only">Email address</label>
+		<input type="email" id="email" formControlName="email" class="form-control backg-dark" placeholder="Email address"
+		 required>
+
+		<label for="password" class="sr-only">Password</label>
+		<input type="password" id="password" formControlName="password" class="form-control backg-dark" placeholder="Password"
+		 required>
+
+		<button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!form.valid">
+			<i class="fas fa-check"></i> Get Started!
+		</button>
+
+		<br>
+
+		<a routerLink="/login">
+			<div class="text-action">
+				<div class="text-action-left">
+					<strong>
+						<i class="fas fa-check text-warning"></i> Already have an account?
+					</strong>
+					<p class="mt-2">
+						Click here to return to login.
+					</p>
+				</div>
+				<div class="text-action-right">
+					<i class="fas fa-chevron-right"></i>
+				</div>
+			</div>
+		</a>
+	</form>
+</div>

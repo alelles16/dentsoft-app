@@ -1,0 +1,7 @@
+{
+  "name": "DentSoftApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
