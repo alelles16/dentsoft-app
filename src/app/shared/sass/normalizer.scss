@@ -82,6 +82,10 @@ input.form-control {
     height: 100vh;
     min-height: 543px;
     background-color: $color-purple;
+
+    @media screen and (max-width: 768px) {
+        padding: 0 16px;
+    }
 }
 
 .text-action {
@@ -89,7 +93,7 @@ input.form-control {
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100%;
-    min-width: 320px;
+    min-width: 288px;
     height: 100%;
     min-height: 92px;
     background-color: $color-purple-dark;
@@ -103,6 +107,7 @@ input.form-control {
     .text-action-left {
         display: flex;
         width: 100%;
+        min-width: 272px;
         flex-direction: column;
         padding: 16px;
         font-size: 16px;
