@@ -47,4 +47,6 @@ export class SignupPage implements OnInit {
         this.result.message = 'Upps! We have a problem';
       });
   }
+
+  
 }

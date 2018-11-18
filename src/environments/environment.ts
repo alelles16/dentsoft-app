@@ -4,5 +4,5 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  endpoint: 'https://dentsoftapp.herokuapp.com'
+  endpoint: 'http://dentsoft-back.test'
 };

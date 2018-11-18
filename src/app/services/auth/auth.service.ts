@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post(`${environment.endpoint}/login`, data);
   }
 
+  whoami() {
+    return this.http.get(`${environment.endpoint}/me?token=${localStorage.getItem('token')}`);
+  }
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
