@@ -31,11 +31,17 @@ export class SignupPage implements OnInit {
       lastname: ['', Validators.required],
       mobile: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      consultory : this.fb.group ({
+        name: ['', Validators.required],
+        address: ['', Validators.required],
+        telephone: ['', Validators.required]
+      })
     });
   }
 
   OnSubmit() {
+    console.log(this.form.value);
     this.result.type = '';
     this.result.message = '';
     this.authService.register(this.form.value)
@@ -47,6 +53,4 @@ export class SignupPage implements OnInit {
         this.result.message = 'Upps! We have a problem';
       });
   }
-
-  
 }

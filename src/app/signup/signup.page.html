@@ -16,8 +16,7 @@
 		 required>
 
 		<label for="mobile" class="sr-only">Mobile</label>
-		<input type="tel" id="mobile" formControlName="mobile" class="form-control backg-dark" placeholder="Mobile"
-		 required>
+		<input type="tel" id="mobile" formControlName="mobile" class="form-control backg-dark" placeholder="Mobile" required>
 
 		<label for="email" class="sr-only">Email address</label>
 		<input type="email" id="email" formControlName="email" class="form-control backg-dark" placeholder="Email address"
@@ -26,6 +25,24 @@
 		<label for="password" class="sr-only">Password</label>
 		<input type="password" id="password" formControlName="password" class="form-control backg-dark" placeholder="Password"
 		 required>
+
+		<p>
+			Consultory
+		</p>
+
+		<div formGroupName="consultory">
+			<label for="consultory_name" class="sr-only">Consultory Name</label>
+			<input type="text" id="consultory_name" formControlName="name" class="form-control backg-dark"
+			 placeholder="Consultory Name" required>
+
+			<label for="consultory_address" class="sr-only">Consultory Address</label>
+			<input type="text" id="consultory_address" formControlName="address" class="form-control backg-dark"
+			 placeholder="Consultory Address" required>
+
+			<label for="consultory_telephone" class="sr-only">Consultory Telephone</label>
+			<input type="mobile" id="consultory_telephone" formControlName="telephone" class="form-control backg-dark"
+			 placeholder="Consultory Telephone" required>
+		</div>
 
 		<button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!form.valid">
 			<i class="fas fa-check"></i> Get Started!

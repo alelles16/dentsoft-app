@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  public user: any;
+  public user: any = {
+    name: '',
+    lastname: ''
+  };
 
   constructor(
     private authService: AuthService,
