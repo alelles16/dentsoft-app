@@ -1,9 +1,146 @@
-<div class="container">
-    <div>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">New Patient</a>
-            </li>
-        </ul>
-    </div>
+<div class="button-top-table">
+    <button type="button" class="btn btn-secondary" (click)="openModalCreatePatient(template)">New Patient</button>
 </div>
+<div class="mt-4 mb-4">
+    <ngx-datatable 
+    class="table-custom"
+    [rows]="rows"
+    [columnMode]="'force'"
+    [headerHeight]="62"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [limit]="8"
+    [scrollbarH]="true"
+    [messages]="{emptyMessage:'You do not have any patients registered in your office yet.'}">
+
+        <ngx-datatable-column [width]="32" name="Id" prop="id"></ngx-datatable-column>
+        <ngx-datatable-column [width]="128" name="Name" prop="name"></ngx-datatable-column>
+        <ngx-datatable-column [width]="128" name="Last Name" prop="lastname"></ngx-datatable-column>
+        <ngx-datatable-column [width]="128" name="Identification" prop="identification"></ngx-datatable-column>
+        <ngx-datatable-column [width]="200" name="Actions">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                <button (click)="openModalShowPatient(showPatient, row)" type="button" class="btn btn-sm btn-success">
+                    <i class="fas fa-eye"></i>
+                    Show
+                </button>
+                <button type="button" class="btn btn-sm btn-warning">Edit</button>
+                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Enter the patient's data</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <form class="form" [formGroup]="createPatientForm" (ngSubmit)="OnSubmitCreatePatient()">
+
+            <div *ngIf="result.type" class="alert {{result.type == 'error'? 'alert-danger':'alert-success'}}">
+                {{result.message}}
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                            </div>
+                            <input type="text" id="inputName" formControlName="name" class="form-control" placeholder="Name"
+                                required autofocus>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                            </div>
+                            <input type="text" id="inputLastName" formControlName="lastname" class="form-control"
+                                placeholder="Last Name" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-watch-time"></i></span>
+                    </div>
+                    <input type="number" id="inputAge" formControlName="age" class="form-control" placeholder="Age"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                    </div>
+                    <input type="text" id="inputGenderl" formControlName="gender" class="form-control" placeholder="Gender"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                    </div>
+                    <input type="text" id="inputIdentification" formControlName="identification" class="form-control"
+                        placeholder="Identification" required>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                    </div>
+                    <input type="text" id="inputPlace" formControlName="placeofbirth" class="form-control" placeholder="Place of Birth"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                    </div>
+                    <input class="form-control datepicker" formControlName="birthdate" placeholder="BirthDate" type="date">
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
+                    </div>
+                    <input type="number" id="inputMobile" formControlName="mobile" class="form-control" placeholder="Mobile"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
+                    </div>
+                    <input type="number" id="inputConsultoryTelephone" formControlName="telephone" class="form-control"
+                        placeholder="Telephone" required>
+                </div>
+            </div>
+
+            <button class="btn btn-lg btn-success btn-block" type="submit" [disabled]="!createPatientForm.valid">Create
+                new Patient</button>
+
+        </form>
+
+    </div>
+</ng-template>

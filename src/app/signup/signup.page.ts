@@ -50,7 +50,7 @@ export class SignupPage implements OnInit {
         this.result.message = 'Your account is ready!';
       }, error => {
         this.result.type = 'error';
-        this.result.message = 'Upps! We have a problem';
+        this.result.message = 'Upps! We have a problem.';
       });
   }
 }

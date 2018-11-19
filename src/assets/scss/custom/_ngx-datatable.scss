@@ -1,0 +1,107 @@
+ngx-datatable.table-custom {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 6px;
+    datatable-header {
+        height: auto !important;
+        padding: 16px;
+        border-bottom: 2px solid #eee;
+        .datatable-header-cell-label {
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            font-size: 14px;
+        }
+    }
+    datatable-body {
+        padding: 0 16px;
+        height: auto !important;
+        min-height: 96px;
+        .datatable-body-cell-label {
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+        datatable-body-cell {
+            display: flex !important;
+            align-items: center;
+            height: 48px !important;
+        }
+        datatable-selection {
+            .empty-row {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                height: 100%;
+                margin-top: 24px;
+                font-size: 14px;
+            }
+        }
+    }
+    datatable-footer {
+        padding: 0 16px !important;
+        .page-count {
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            font-size: 14px;
+        }
+        datatable-pager {
+            .pager {
+                .pages {
+                    a {
+                        display: flex !important;
+                        width: 36px;
+                        height: 36px;
+                        margin: 0 3px;
+                        padding: 0;
+                        border-radius: 50% !important;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        color: #8898aa;
+                        border: 1px solid #dee2e6;
+                        background-color: #fff;
+                    }
+                }
+            }
+        }
+    }
+    datatable-scroller {
+        width: auto !important;
+    }
+}
+
+.button-top-table {
+    margin-top: 0;
+    @media screen and (max-width: 768px) {
+        margin-top: 24px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: #eee;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: darken($color: #eee, $amount: 10%);
+    ;
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: darken($color: #eee, $amount: 30%);
+}
