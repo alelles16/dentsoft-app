@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post(`${environment.endpoint}/login`, data);
   }
 
+  logout() {
+    return this.http.post(`${environment.endpoint}/logout`, { token: localStorage.getItem('token') });
+  }
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }

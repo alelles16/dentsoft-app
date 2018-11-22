@@ -6,17 +6,23 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HomePage } from './home.page';
 import { PatientsPage } from './patients/patients.page';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DentistsPage } from './dentists/dentists.page';
 
 const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    children: [{
+    children: [
+      {
         path: 'patients',
         component: PatientsPage
+      },
+      {
+        path: 'dentists',
+        component: DentistsPage
       }
     ]
   }
@@ -32,6 +38,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxDatatableModule
   ],
-  declarations: [HomePage, PatientsPage]
+  declarations: [HomePage, PatientsPage, DentistsPage]
 })
 export class HomePageModule { }

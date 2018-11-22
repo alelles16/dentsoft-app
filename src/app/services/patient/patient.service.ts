@@ -13,6 +13,14 @@ export class PatientService {
     return this.http.post(`${environment.endpoint}/patient`, data);
   }
 
+  updatePatient(id: number, data: any) {
+    return this.http.put(`${environment.endpoint}/patient/${id}`, data);
+  }
+
+  deletePatient(id: number) {
+    return this.http.delete(`${environment.endpoint}/patient/${id}`);
+  }
+
   getPatientsbyConsultory(consultory_id: number) {
     return this.http.get(`${environment.endpoint}/patients_consultory/${consultory_id}`);
   }

@@ -2,16 +2,9 @@
     <button type="button" class="btn btn-secondary" (click)="openModalCreatePatient(template)">New Patient</button>
 </div>
 <div class="mt-4 mb-4">
-    <ngx-datatable 
-    class="table-custom"
-    [rows]="rows"
-    [columnMode]="'force'"
-    [headerHeight]="62"
-    [footerHeight]="50"
-    [rowHeight]="'auto'"
-    [limit]="8"
-    [scrollbarH]="true"
-    [messages]="{emptyMessage:'You do not have any patients registered in your office yet.'}">
+    <ngx-datatable class="table-custom" [rows]="rows" [columnMode]="'force'" [headerHeight]="62" [footerHeight]="50"
+        [rowHeight]="'auto'" [limit]="8" [scrollbarH]="true"
+        [messages]="{emptyMessage:'You do not have any patients registered in your office yet.', totalMessage: 'total'}">
 
         <ngx-datatable-column [width]="32" name="Id" prop="id"></ngx-datatable-column>
         <ngx-datatable-column [width]="128" name="Name" prop="name"></ngx-datatable-column>
@@ -19,12 +12,12 @@
         <ngx-datatable-column [width]="128" name="Identification" prop="identification"></ngx-datatable-column>
         <ngx-datatable-column [width]="200" name="Actions">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                <button (click)="openModalShowPatient(showPatient, row)" type="button" class="btn btn-sm btn-success">
+                <button (click)="openModalDetailPatient(detailtemplate, row, true)" type="button" class="btn btn-sm btn-success">
                     <i class="fas fa-eye"></i>
                     Show
                 </button>
-                <button type="button" class="btn btn-sm btn-warning">Edit</button>
-                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                <button (click)="openModalDetailPatient(detailtemplate, row, false)" type="button" class="btn btn-sm btn-warning">Edit</button>
+                <button (click)="openModalDeletePatient(deletetemplate, row)" type="button" class="btn btn-sm btn-danger">Delete</button>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
@@ -142,5 +135,132 @@
 
         </form>
 
+    </div>
+</ng-template>
+
+<ng-template #detailtemplate>
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">Information about a specific patient.</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form class="form" [formGroup]="detailPatientForm" (ngSubmit)="OnSubmitDetails()">
+                <h6 class="heading-small text-muted mb-4">Patient information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-name">Name</label>
+                                <input type="text" id="input-name" class="form-control form-control-alternative"
+                                    placeholder="Name" formControlName="name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-lastname">Last Name</label>
+                                <input type="email" id="input-lastname" class="form-control form-control-alternative"
+                                    placeholder="Last Name" formControlName="lastname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-identification">Identification</label>
+                                <input type="text" id="input-identification" class="form-control form-control-alternative"
+                                    placeholder="Identification" formControlName="identification">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-age">Age</label>
+                                <input type="number" id="input-age" class="form-control form-control-alternative"
+                                    placeholder="Age" formControlName="age">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-gender">Gender</label>
+                                <input type="text" id="input-gender" class="form-control form-control-alternative"
+                                    placeholder="Gender" formControlName="gender">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-place">Place of Birth</label>
+                                <input type="text" id="input-place" class="form-control form-control-alternative"
+                                    placeholder="Place of Birth" formControlName="placeofbirth">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-birthdate">BirthDate</label>
+                                <input type="date" id="input-birthdate" class="form-control form-control-alternative"
+                                    placeholder="BirthDate" formControlName="birthdate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-mobile">Mobile</label>
+                                <input type="number" id="input-mobile" class="form-control form-control-alternative"
+                                    placeholder="Mobile" formControlName="mobile">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-telephone">Telephone</label>
+                                <input type="number" id="input-telephone" class="form-control form-control-alternative"
+                                    placeholder="Telephone" formControlName="telephone">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="editing" class="text-right">
+                    <button class="btn btn-icon btn-3 btn-success" type="submit" [disabled]="!detailPatientForm.valid">
+                        <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
+                        <span class="btn-inner--text">Save new changes</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #deletetemplate>
+    <div class="modal-content bg-gradient-danger">
+        <div class="modal-header">
+            <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="declineDeletePatient()">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Are you sure?</h4>
+                <p>Remember that the information will be lost.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-white" (click)="confirmDeletePatient()">Yes</button>
+            <button type="button" class="btn btn-link text-white ml-auto" (click)="declineDeletePatient()" data-dismiss="modal">Close</button>
+        </div>
     </div>
 </ng-template>

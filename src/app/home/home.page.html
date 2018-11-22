@@ -14,8 +14,8 @@
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ni ni-circle-08"></i>
-                    <strong> {{ user.name }} </strong>
+                    <i class="ni ni-circle-08 mr-1"></i>
+                    <strong class="mr-1"> {{ user.name }} </strong>
                     <i class="fas fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -39,7 +39,7 @@
                         <span>Support</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item">
+                    <a (click)='logout()' class="dropdown-item">
                         <i class="ni ni-user-run"></i>
                         <span>Logout</span>
                     </a>
@@ -52,7 +52,7 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="#">
+                        <a href="/">
                             <strong>DentSoft Dashboard</strong>
                         </a>
                     </div>
@@ -81,8 +81,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="dentits">
-                        <i class="fas fa-user-md text-info"></i> Dentits
+                    <a class="nav-link" routerLink="dentists">
+                        <i class="fas fa-user-md text-info"></i> Dentists
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="reports">
+                        <i class="fas fa-clipboard-list text-success"></i> Medical Histories
                     </a>
                 </li>
             </ul>
@@ -102,8 +107,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <i class="ni ni-circle-08"></i>
-                        <strong> {{ user.name }} </strong>
+                        <i class="ni ni-circle-08 mr-1"></i>
+                        <strong class="mr-1"> {{ user.name }} </strong>
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
@@ -127,7 +132,7 @@
                             <span>Support</span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#!" class="dropdown-item">
+                        <a (click)='logout()' class="dropdown-item">
                             <i class="ni ni-user-run"></i>
                             <span>Logout</span>
                         </a>

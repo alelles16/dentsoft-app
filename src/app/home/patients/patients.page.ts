@@ -13,8 +13,10 @@ export class PatientsPage implements OnInit {
 
   modalRef: BsModalRef;
   public createPatientForm: FormGroup;
+  public detailPatientForm: FormGroup;
   public consultory = JSON.parse(localStorage.getItem('consultory'));
   public patient: any;
+  public editing = false;
   public result: any = {
     'type': '',
     'message': ''
@@ -31,7 +33,6 @@ export class PatientsPage implements OnInit {
 
   ngOnInit() {
     this.getData();
-    this.newPatientForm();
   }
 
   getData() {
@@ -46,6 +47,7 @@ export class PatientsPage implements OnInit {
 
   openModalCreatePatient(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+    this.newPatientForm();
   }
 
   newPatientForm() {
@@ -63,21 +65,73 @@ export class PatientsPage implements OnInit {
     });
   }
 
-  openModalShowPatient(template: TemplateRef<any>, row: any) {
-    this.patient = row;
-    this.modalRef = this.modalService.show(template);
-    console.log(row);
-  }
-
   OnSubmitCreatePatient() {
     console.log(this.createPatientForm.value);
     this.patientService.newPatient(this.createPatientForm.value)
       .subscribe((data: any) => {
         this.getData();
         this.modalRef.hide();
+        this.createPatientForm.reset();
       }, error => {
         console.log(error);
       });
+  }
+
+  openModalDetailPatient(template: TemplateRef<any>, row: any, no_edit: boolean) {
+    console.log(no_edit);
+    this.patient = row;
+    this.modalRef = this.modalService.show(
+      template,
+      Object.assign({}, { class: 'gray modal-lg' })
+    );
+    this.showPatientForm(row, no_edit);
+    this.editing = !no_edit;
+  }
+
+  showPatientForm(data: any, no_edit: boolean) {
+    this.detailPatientForm = this.fb.group({
+      name: [{ value: data ? data.name : '', disabled: no_edit }, Validators.required],
+      lastname: [{ value: data ? data.lastname : '', disabled: no_edit }, Validators.required],
+      age: [{ value: data ? data.age : '', disabled: no_edit }, Validators.required],
+      gender: [{ value: data ? data.gender : '', disabled: no_edit }, Validators.required],
+      identification: [{ value: data ? data.identification : '', disabled: true }, Validators.required],
+      placeofbirth: [{ value: data ? data.placeofbirth : '', disabled: no_edit }, Validators.required],
+      birthdate: [{ value: data ? data.birthdate : '', disabled: no_edit }, Validators.required],
+      telephone: [{ value: data ? data.telephone : '', disabled: no_edit }, Validators.required],
+      mobile: [{ value: data ? data.mobile : '', disabled: no_edit }, Validators.required],
+      consultory_id: this.consultory.id,
+    });
+  }
+
+  OnSubmitDetails() {
+    console.log(this.createPatientForm.value);
+    this.patientService.updatePatient(this.patient.id, this.detailPatientForm.value)
+      .subscribe((data: any) => {
+        this.getData();
+        this.modalRef.hide();
+        this.detailPatientForm.reset();
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  openModalDeletePatient(template: TemplateRef<any>, row: any) {
+    this.patient = row;
+    this.modalRef = this.modalService.show(template, { class: 'modal-md modal-danger modal-dialog-centered modal' });
+  }
+
+  confirmDeletePatient(): void {
+    this.patientService.deletePatient(this.patient.id)
+      .subscribe((data: any) => {
+        this.getData();
+        this.modalRef.hide();
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  declineDeletePatient(): void {
+    this.modalRef.hide();
   }
 
 }
