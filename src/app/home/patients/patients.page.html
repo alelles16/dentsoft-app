@@ -3,8 +3,7 @@
 </div>
 <div class="mt-4 mb-4">
     <ngx-datatable class="table-custom" [rows]="rows" [columnMode]="'force'" [headerHeight]="62" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="8" [scrollbarH]="true"
-        [messages]="{emptyMessage:'You do not have any patients registered in your office yet.', totalMessage: 'total'}">
+        [rowHeight]="'auto'" [limit]="8" [scrollbarH]="true" [messages]="{emptyMessage:'You do not have any patients registered in your office yet.', totalMessage: 'total'}">
 
         <ngx-datatable-column [width]="32" name="Id" prop="id"></ngx-datatable-column>
         <ngx-datatable-column [width]="128" name="Name" prop="name"></ngx-datatable-column>
@@ -45,8 +44,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                             </div>
-                            <input type="text" id="inputName" formControlName="name" class="form-control" placeholder="Name"
-                                required autofocus>
+                            <input pattern="[a-zA-Z ]*" type="text" id="inputName" formControlName="name" class="form-control"
+                                placeholder="Name" required autofocus>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -54,7 +53,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                             </div>
-                            <input type="text" id="inputLastName" formControlName="lastname" class="form-control"
+                            <input pattern="[a-zA-Z ]*" type="text" id="inputLastName" formControlName="lastname" class="form-control"
                                 placeholder="Last Name" required>
                         </div>
                     </div>
@@ -74,19 +73,24 @@
             <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                        <span class="input-group-text"><i class="fas fa-transgender"></i></span>
                     </div>
-                    <input type="text" id="inputGenderl" formControlName="gender" class="form-control" placeholder="Gender"
-                        required>
+                    <select id="input-gender" class="form-control form-control-alternative" placeholder="Gender"
+                        formControlName="gender">
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="doentSpecify">Does not specify</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                        <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                     </div>
-                    <input type="text" id="inputIdentification" formControlName="identification" class="form-control"
+                    <input type="number" id="inputIdentification" formControlName="identification" class="form-control"
                         placeholder="Identification" required>
                 </div>
             </div>
@@ -106,14 +110,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                     </div>
-                    <input class="form-control datepicker" formControlName="birthdate" placeholder="BirthDate" type="date">
+                    <input class="form-control datepicker" value="01/01/1990" formControlName="birthdate" type="date" placeholder="Select Date" required>
                 </div>
             </div>
 
             <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
+                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                     </div>
                     <input type="number" id="inputMobile" formControlName="mobile" class="form-control" placeholder="Mobile"
                         required>
@@ -123,7 +127,7 @@
             <div class="form-group">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
                     </div>
                     <input type="number" id="inputConsultoryTelephone" formControlName="telephone" class="form-control"
                         placeholder="Telephone" required>
@@ -176,7 +180,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-identification">Identification</label>
-                                <input type="text" id="input-identification" class="form-control form-control-alternative"
+                                <input type="number" id="input-identification" class="form-control form-control-alternative"
                                     placeholder="Identification" formControlName="identification">
                             </div>
                         </div>
@@ -190,8 +194,12 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-gender">Gender</label>
-                                <input type="text" id="input-gender" class="form-control form-control-alternative"
-                                    placeholder="Gender" formControlName="gender">
+                                <select id="input-gender" class="form-control form-control-alternative" placeholder="Gender"
+                                    formControlName="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="doentSpecify">Does not specify</option>
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -41,7 +41,6 @@ export class SignupPage implements OnInit {
   }
 
   OnSubmit() {
-    console.log(this.form.value);
     this.result.type = '';
     this.result.message = '';
     this.authService.register(this.form.value)

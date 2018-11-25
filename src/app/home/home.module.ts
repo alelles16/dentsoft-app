@@ -10,6 +10,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HomePage } from './home.page';
 import { PatientsPage } from './patients/patients.page';
 import { DentistsPage } from './dentists/dentists.page';
+import { ReportsPage } from './reports/reports.page';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'dentists',
         component: DentistsPage
+      },
+      {
+        path: 'reports',
+        component: ReportsPage
       }
     ]
   }
@@ -38,6 +43,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxDatatableModule
   ],
-  declarations: [HomePage, PatientsPage, DentistsPage]
+  declarations: [HomePage, PatientsPage, DentistsPage, ReportsPage]
 })
 export class HomePageModule { }

@@ -3,6 +3,12 @@
 //
 
 .custom-checkbox {
+    .custom-control-label {
+        &::before {
+            margin-top: -2px;
+        }
+    }
+
     .custom-control-input ~ .custom-control-label {
         cursor: pointer;
         font-size: $font-size-sm;
@@ -12,9 +18,11 @@
         &:checked {
             ~ .custom-control-label {
                 &::before {
+                    margin-top: -2px;
                     border-color: $custom-control-indicator-checked-border-color;
                 }
                 &::after {
+                    margin-top: -2px;
                     background-image: $custom-checkbox-indicator-icon-checked;
                 }
             }

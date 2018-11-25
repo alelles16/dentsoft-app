@@ -6,6 +6,8 @@
 // General styles
 
 .nav-pills {
+    font-weight: 500 !important;
+
     .nav-item:not(:last-child) {
         padding-right: $nav-pills-space-x;
     }
@@ -26,8 +28,8 @@
 
     .nav-link.active,
     .show > .nav-link {
-        color: $nav-pills-link-active-color;
-        background-color: $nav-pills-link-active-bg;
+        color: #fff;
+        background-color: #172b4d;
     }
 
     @include media-breakpoint-down(xs) {

@@ -39,7 +39,6 @@ export class HomePage implements OnInit {
             this.consultory = data_consultory;
 
           }, error => {
-            console.log(error);
             this.router.navigate(['login']);
           });
 
@@ -51,13 +50,11 @@ export class HomePage implements OnInit {
   logout() {
     this.authService.logout()
     .subscribe((data: any) => {
-      console.log(data);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('consultory');
       this.router.navigate(['login']);
     }, error => {
-      console.log(error);
     });
   }
 

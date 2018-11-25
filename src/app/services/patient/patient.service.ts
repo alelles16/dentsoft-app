@@ -10,18 +10,18 @@ export class PatientService {
   constructor(public http: HttpClient) { }
 
   newPatient(data: any) {
-    return this.http.post(`${environment.endpoint}/patient`, data);
+    return this.http.post(`${environment.endpoint}/patient?token=${localStorage.getItem('token')}`, data);
   }
 
   updatePatient(id: number, data: any) {
-    return this.http.put(`${environment.endpoint}/patient/${id}`, data);
+    return this.http.put(`${environment.endpoint}/patient/${id}?token=${localStorage.getItem('token')}`, data);
   }
 
   deletePatient(id: number) {
-    return this.http.delete(`${environment.endpoint}/patient/${id}`);
+    return this.http.delete(`${environment.endpoint}/patient/${id}?token=${localStorage.getItem('token')}`);
   }
 
   getPatientsbyConsultory(consultory_id: number) {
-    return this.http.get(`${environment.endpoint}/patients_consultory/${consultory_id}`);
+    return this.http.get(`${environment.endpoint}/patients_consultory/${consultory_id}?token=${localStorage.getItem('token')}`);
   }
 }

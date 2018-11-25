@@ -37,10 +37,8 @@ export class DentistsPage implements OnInit {
   getData() {
     this.dentistService.getDentistsbyConsultory(this.consultory.id)
     .subscribe((data: any) => {
-      console.log(data);
       this.rows = data;
     }, error => {
-      console.log(error)
     });
   }
 
@@ -51,27 +49,24 @@ export class DentistsPage implements OnInit {
 
   newDentistForm() {
     this.createDentistForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      mobile: ['', Validators.required],
+      name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
+      lastname: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
+      mobile: ['', Validators.compose([Validators.required, Validators.minLength(7)])],
       consultory_id: this.consultory.id,
     });
   }
 
   OnSubmitCreateDentist() {
-    console.log(this.createDentistForm.value);
     this.dentistService.newDentist(this.createDentistForm.value)
       .subscribe((data: any) => {
         this.getData();
         this.modalRef.hide();
         this.createDentistForm.reset();
       }, error => {
-        console.log(error);
       });
   }
 
   openModalDetailDentist(template: TemplateRef<any>, row: any, no_edit: boolean) {
-    console.log(no_edit);
     this.dentist = row;
     this.modalRef = this.modalService.show(
       template,
@@ -91,14 +86,12 @@ export class DentistsPage implements OnInit {
   }
 
   OnSubmitDetails() {
-    console.log(this.detailDentistForm.value);
     this.dentistService.updateDentist(this.dentist.id, this.detailDentistForm.value)
       .subscribe((data: any) => {
         this.getData();
         this.modalRef.hide();
         this.detailDentistForm.reset();
       }, error => {
-        console.log(error);
       });
   }
 
@@ -113,7 +106,6 @@ export class DentistsPage implements OnInit {
         this.getData();
         this.modalRef.hide();
       }, error => {
-        console.log(error);
       });
   }
 

@@ -38,10 +38,8 @@ export class PatientsPage implements OnInit {
   getData() {
     this.patientService.getPatientsbyConsultory(this.consultory.id)
       .subscribe((data: any) => {
-        console.log(data);
         this.rows = data;
       }, error => {
-        console.log(error);
       });
   }
 
@@ -52,33 +50,30 @@ export class PatientsPage implements OnInit {
 
   newPatientForm() {
     this.createPatientForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      age: ['', Validators.required],
+      name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
+      lastname: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
+      age: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(10)])],
       gender: ['', Validators.required],
       identification: ['', Validators.required],
       placeofbirth: ['', Validators.required],
       birthdate: ['', Validators.required],
-      telephone: ['', Validators.required],
-      mobile: ['', Validators.required],
+      telephone: ['', Validators.compose([Validators.required, Validators.minLength(7)])],
+      mobile: ['', Validators.compose([Validators.required, Validators.minLength(7)])],
       consultory_id: this.consultory.id,
     });
   }
 
   OnSubmitCreatePatient() {
-    console.log(this.createPatientForm.value);
     this.patientService.newPatient(this.createPatientForm.value)
       .subscribe((data: any) => {
         this.getData();
         this.modalRef.hide();
         this.createPatientForm.reset();
       }, error => {
-        console.log(error);
       });
   }
 
   openModalDetailPatient(template: TemplateRef<any>, row: any, no_edit: boolean) {
-    console.log(no_edit);
     this.patient = row;
     this.modalRef = this.modalService.show(
       template,
@@ -104,14 +99,12 @@ export class PatientsPage implements OnInit {
   }
 
   OnSubmitDetails() {
-    console.log(this.createPatientForm.value);
     this.patientService.updatePatient(this.patient.id, this.detailPatientForm.value)
       .subscribe((data: any) => {
         this.getData();
         this.modalRef.hide();
         this.detailPatientForm.reset();
       }, error => {
-        console.log(error);
       });
   }
 
@@ -126,7 +119,6 @@ export class PatientsPage implements OnInit {
         this.getData();
         this.modalRef.hide();
       }, error => {
-        console.log(error);
       });
   }
 

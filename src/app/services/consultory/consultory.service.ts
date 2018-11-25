@@ -10,6 +10,6 @@ export class ConsultoryService {
   constructor(public http: HttpClient) { }
 
   getConsultoryByUser(id: number) {
-    return this.http.get(`${environment.endpoint}/consultory_user/${id}`);
+    return this.http.get(`${environment.endpoint}/consultory_user/${id}?token=${localStorage.getItem('token')}`);
   }
 }
