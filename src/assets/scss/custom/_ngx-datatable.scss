@@ -3,6 +3,8 @@ ngx-datatable.table-custom {
     width: 100%;
     background-color: #fff;
     border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(50, 50, 93, 0.01), 0 5px 16px rgba(0, 0, 0, 0.17);
+
     datatable-header {
         height: auto !important;
         padding: 16px;
@@ -13,6 +15,7 @@ ngx-datatable.table-custom {
             font-size: 14px;
         }
     }
+
     datatable-body {
         padding: 0 16px;
         height: auto !important;
@@ -41,6 +44,7 @@ ngx-datatable.table-custom {
             }
         }
     }
+
     datatable-footer {
         padding: 0 16px !important;
         .page-count {

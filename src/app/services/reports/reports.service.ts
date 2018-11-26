@@ -9,8 +9,12 @@ export class ReportsService {
 
   constructor(public http: HttpClient) { }
 
-  allReports(){
+  allReports() {
     return this.http.get(`${environment.endpoint}/histories?token=${localStorage.getItem('token')}`);
+  }
+
+  getReportsbyPatient(id: number) {
+    return this.http.get(`${environment.endpoint}/user/${id}/histories?token=${localStorage.getItem('token')}`);
   }
 
   saveReport(data) {

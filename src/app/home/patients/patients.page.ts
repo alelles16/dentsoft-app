@@ -52,7 +52,7 @@ export class PatientsPage implements OnInit {
     this.createPatientForm = this.fb.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
       lastname: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
-      age: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(10)])],
+      age: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(100)])],
       gender: ['', Validators.required],
       identification: ['', Validators.required],
       placeofbirth: ['', Validators.required],

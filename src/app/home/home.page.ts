@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
   public consultory: any = {
     name: ''
   };
+  public stadistics: any = {};
 
   constructor(
     private authService: AuthService,
@@ -45,17 +46,32 @@ export class HomePage implements OnInit {
       }, error => {
         this.router.navigate(['login']);
       });
+    this.consultoryService.getStatistics()
+      .subscribe(data => {
+        this.stadistics = data;
+      }, error => {
+        console.log(error)
+      });
+  }
+
+  getStadistics() {
+    this.consultoryService.getStatistics()
+      .subscribe(data => {
+        this.stadistics = data;
+      }, error => {
+        console.log(error)
+      });
   }
 
   logout() {
     this.authService.logout()
-    .subscribe((data: any) => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('consultory');
-      this.router.navigate(['login']);
-    }, error => {
-    });
+      .subscribe((data: any) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('consultory');
+        this.router.navigate(['login']);
+      }, error => {
+      });
   }
 
 }

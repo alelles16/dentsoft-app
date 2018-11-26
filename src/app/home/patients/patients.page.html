@@ -11,7 +11,7 @@
         <ngx-datatable-column [width]="128" name="Identification" prop="identification"></ngx-datatable-column>
         <ngx-datatable-column [width]="200" name="Actions">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                <button (click)="openModalDetailPatient(detailtemplate, row, true)" type="button" class="btn btn-sm btn-success">
+                <button (click)="openModalDetailPatient(detailtemplate, row)" type="button" class="btn btn-sm btn-success">
                     <i class="fas fa-eye"></i>
                     Show
                 </button>
